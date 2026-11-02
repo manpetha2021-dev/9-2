@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ප්‍රශ්න පත්‍රය</title>
+    <style>
+        body {
+            font-family: 'Iskoola Pota', Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .timer-box {
+            background: #fffae6;
+            border: 2px solid #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #d9534f;
+        }
+        .student-info {
+            margin-bottom: 20px;
+        }
+        .student-info input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .question-card {
+            background: #fafbfc;
+            border: 1px solid #e1e4e8;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+        .submit-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .btn-submit {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #218838;
+        }
+        #result-section {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #e2f0d9;
+            border: 1px solid #c3e6cb;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+            color: #155724;
+        }
+        .feedback {
+            font-size: 14px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="timer-box" id="timer">ඉතිරි කාලය: විනාඩි 30 : තත්පර 00</div>
+
+    <div class="student-info">
+        <input type="text" id="studentName" placeholder="නම සහ විභාග අංකය ඇතුළත් කරන්න">
+    </div>
+
+    <form id="quizForm">
+
+        <!-- Q01 -->
+        <div class="question-card" data-q="1" data-ans="මීටර් 30 දක්වා">
+            <div class="question-title">01. ශ්‍රී ලංකාවේ වෙරළබඩ තැනිතලාව මුහුදු මට්ටමේ සිට ................. දක්වා විහිදේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q1" value="මීටර් 10 දක්වා"> (අ) මීටර් 10 දක්වා</label>
+                <label><input type="radio" name="q1" value="මීටර් 30 දක්වා"> (ආ) මීටර් 30 දක්වා</label>
+                <label><input type="radio" name="q1" value="මීටර් 300 දක්වා"> (ඇ) මීටර් 300 දක්වා</label>
+            </div>
+            <div class="feedback" id="fb1"></div>
+        </div>
+
+        <!-- Q02 -->
+        <div class="question-card" data-q="2" data-ans="මුතුරාජවෙල">
+            <div class="question-title">02. ගංගා මෝය ප්‍රදේශවල වැලි තැන්පත් වී ඇහිරීම නිසා නිර්මාණය වන වගුරු බිමකට නිදසුනකි.</div>
+            <div class="options">
+                <label><input type="radio" name="q2" value="මුතුරාජවෙල"> (අ) මුතුරාජවෙල</label>
+                <label><input type="radio" name="q2" value="මහනුවර සානුව"> (ආ) මහනුවර සානුව</label>
+                <label><input type="radio" name="q2" value="පිදුරුතලාගල"> (ඇ) පිදුරුතලාගල</label>
+            </div>
+            <div class="feedback" id="fb2"></div>
+        </div>
+
+        <!-- Q03 -->
+        <div class="question-card" data-q="3" data-ans="දෙවුන්දර තුඩුව">
+            <div class="question-title">03. මුහුද දෙසට නෙරා ගිය ප්‍රතිරෝධක පාෂාණ සහිත ගොඩබිම් ප්‍රදේශයක් හෙවත් 'තුඩුව' සඳහා උදාහරණයකි.</div>
+            <div class="options">
+                <label><input type="radio" name="q3" value="මීගමුව කලපුව"> (අ) මීගමුව කලපුව</label>
+                <label><input type="radio" name="q3" value="දෙවුන්දර තුඩුව"> (ආ) දෙවුන්දර තුඩුව</label>
+                <label><input type="radio" name="q3" value="කොඩ්ඩියාර් බොක්ක"> (ඇ) කොඩ්ඩියාර් බොක්ක</label>
+            </div>
+            <div class="feedback" id="fb3"></div>
+        </div>
+
+        <!-- Q04 -->
+        <div class="question-card" data-q="4" data-ans="සීගිරිය">
+            <div class="question-title">04. ඛාදනයට ලක්ව ඉතිරි වී ඇති තද පාෂාණ කුට්ටි ලෙස සැලකෙන 'ශේෂ කන්දක්' වන්නේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q4" value="සීගිරිය"> (අ) සීගිරිය</label>
+                <label><input type="radio" name="q4" value="හැටන් සානුව"> (ආ) හැටන් සානුව</label>
+                <label><input type="radio" name="q4" value="නකල්ස් කඳු"> (ඇ) නකල්ස් කඳු</label>
+            </div>
+            <div class="feedback" id="fb4"></div>
+        </div>
+
+        <!-- Q05 -->
+        <div class="question-card" data-q="5" data-ans="මහවැලි ගඟ">
+            <div class="question-title">05. ශ්‍රී ලංකාවේ දිගම ගඟ මෙන්ම විශාලම ගංගා ද්‍රෝණියට හිමිකම් කියන ගංගාව වන්නේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q5" value="කැලණි ගඟ"> (අ) කැලණි ගඟ</label>
+                <label><input type="radio" name="q5" value="මහවැලි ගඟ"> (ආ) මහවැලි ගඟ</label>
+                <label><input type="radio" name="q5" value="කළු ගඟ"> (ඇ) කළු ගඟ</label>
+            </div>
+            <div class="feedback" id="fb5"></div>
+        </div>
+
+        <!-- Q06 -->
+        <div class="question-card" data-q="6" data-ans="අරීය රටාවක්">
+            <div class="question-title">06. ශ්‍රී ලංකාවේ සමස්ත ජලවහන රටාව පෙන්නුම් කරන්නේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q6" value="අරීය රටාවක්"> (අ) අරීය රටාවක්</label>
+                <label><input type="radio" name="q6" value="ජාලාකාර රටාවක්"> (ආ) ජාලාකාර රටාවක්</label>
+                <label><input type="radio" name="q6" value="සමාන්තර රටාවක්"> (ඇ) සමාන්තර රටාවක්</label>
+            </div>
+            <div class="feedback" id="fb6"></div>
+        </div>
+
+        <!-- Q07 -->
+        <div class="question-card" data-q="7" data-ans="පතන ශීඝ්‍රතාව">
+            <div class="question-title">07. භූමියේ උස අනුව උෂ්ණත්වය අඩු වීම හඳුන්වන්නේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q7" value="පතන ශීඝ්‍රතාව"> (අ) පතන ශීඝ්‍රතාව</label>
+                <label><input type="radio" name="q7" value="වාෂ්පීකරණය"> (ආ) වාෂ්පීකරණය</label>
+                <label><input type="radio" name="q7" value="ඝනීභවනය"> (ඇ) ඝනීභවනය</label>
+            </div>
+            <div class="feedback" id="fb7"></div>
+        </div>
+
+        <!-- Q08 -->
+        <div class="question-card" data-q="8" data-ans="කච්චාන්">
+            <div class="question-title">08. නිරිතදිග මෝසම් සුළඟ මධ්‍යම කඳුකරයේ සුළං මුවාවෙන් නැගෙනහිර ප්‍රදේශ හරහා හමායන වියළි සුළඟ හැඳින්වෙන නම වන්නේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q8" value="කච්චාන්"> (අ) කච්චාන්</label>
+                <label><input type="radio" name="q8" value="මෝසම් සුළඟ"> (ආ) මෝසම් සුළඟ</label>
+                <label><input type="radio" name="q8" value="සංවහන සුළඟ"> (ඇ) සංවහන සුළඟ</label>
+            </div>
+            <div class="feedback" id="fb8"></div>
+        </div>
+
+        <!-- Q09 -->
+        <div class="question-card" data-q="9" data-ans="බෙංගාල බොක්ක">
+            <div class="question-title">09. ශ්‍රී ලංකාවට බලපාන වාසුළි වැඩි වශයෙන් ඇති වන්නේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q9" value="අරාබි මුහුදේ"> (අ) අරාබි මුහුදේ</label>
+                <label><input type="radio" name="q9" value="බෙංගාල බොක්කේ"> (ආ) බෙංගාල බොක්කේ</label>
+                <label><input type="radio" name="q9" value="පැසිපික් සාගරයේ"> (ඇ) පැසිපික් සාගරයේ</label>
+            </div>
+            <div class="feedback" id="fb9"></div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question-card" data-q="10" data-ans="දේශගුණික කලාප පහකට">
+            <div class="question-title">10. උෂ්ණත්වය හා වර්ෂාපතනය වැනි සාධක අනුව ශ්‍රී ලංකාව බෙදා ඇති දේශගුණික කලාප සංඛ්‍යාව.</div>
+            <div class="options">
+                <label><input type="radio" name="q10" value="දේශගුණික කලාප තුනකට"> (අ) දේශගුණික කලාප තුනකට</label>
+                <label><input type="radio" name="q10" value="දේශගුණික කලාප පහකට"> (ආ) දේශගුණික කලාප පහකට</label>
+                <label><input type="radio" name="q10" value="දේශගුණික කලාප හතකට"> (ඇ) දේශගුණික කලාප හතකට</label>
+            </div>
+            <div class="feedback" id="fb10"></div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="question-card" data-q="11" data-ans="වායුධර මුල්">
+            <div class="question-title">11. කඩොලාන වනාන්තරවල ජලයෙන් ඉහළට විහිදෙන මුල් හැඳින්වෙන්නේ ................. ලෙස වේ.</div>
+            <input type="text" name="q11" placeholder="ඔබේ පිළිතුර මෙහි ලියන්න...">
+            <div class="feedback" id="fb11"></div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="question-card" data-q="12" data-ans="අවුරුදු 10කට වරක්">
+            <div class="question-title">12. ශ්‍රී ලංකාවේ ජන සංගණන පවත්වනු ලබන්නේ කොපමණ කාලයකට වරක්ද? .................</div>
+            <input type="text" name="q12" placeholder="ඔබේ පිළිතුර මෙහි ලියන්න...">
+            <div class="feedback" id="fb12"></div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="question-card" data-q="13" data-ans="පුමිතිරි අනුපාතය">
+            <div class="question-title">13. ජන සංඛ්‍යාවේ ස්ත්‍රීන් 100 කට සිටින පුරුෂයන් සංඛ්‍යාව හැඳින්වෙන්නේ ................. නමිනි.</div>
+            <input type="text" name="q13" placeholder="ඔබේ පිළිතුර මෙහි ලියන්න...">
+            <div class="feedback" id="fb13"></div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="question-card" data-q="14" data-ans="ග්‍රාමීය ජනාවාස">
+            <div class="question-title">14. කෘෂිකර්මාන්තය හා ධීවර කර්මාන්තය මත පදනම් වූ ජනාවාස වර්ගය ................. වේ.</div>
+            <input type="text" name="q14" placeholder="ඔබේ පිළිතුර මෙහි ලියන්න...">
+            <div class="feedback" id="fb14"></div>
+        </div>
+
+        <!-- Q15 -->
+        <div class="question-card" data-q="15" data-ans="බස්නාහිර පළාතේය">
+            <div class="question-title">15. ශ්‍රී ලංකාවේ වැඩිම කර්මාන්ත සංඛ්‍යාවක් සහ ජන සංඛ්‍යාවෙන් 1/4ක් පමණ ඒකරාශී වී ඇත්තේ ................. ය.</div>
+            <input type="text" name="q15" placeholder="ඔබේ පිළිතුර මෙහි ලියන්න...">
+            <div class="feedback" id="fb15"></div>
+        </div>
+
+        <!-- Q16 -->
+        <div class="question-card" data-q="16" data-ans="කොළඹ දිස්ත්‍රික්කය">
+            <div class="question-title">16. 2012 සංගණනයට අනුව ශ්‍රී ලංකාවේ වැඩිම ජන ඝනත්වයක් වාර්තා වන දිස්ත්‍රික්කය වන්නේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q16" value="කොළඹ දිස්ත්‍රික්කය"> (1) කොළඹ දිස්ත්‍රික්කය</label>
+                <label><input type="radio" name="q16" value="මොනරාගල දිස්ත්‍රික්කය"> (2) මොනරාගල දිස්ත්‍රික්කය</label>
+                <label><input type="radio" name="q16" value="අනුරාධපුර දිස්ත්‍රික්කය"> (3) අනුරාධපුර දිස්ත්‍රික්කය</label>
+                <label><input type="radio" name="q16" value="හම්බන්තොට දිස්ත්‍රික්කය"> (4) හම්බන්තොට දිස්ත්‍රික්කය</label>
+            </div>
+            <div class="feedback" id="fb16"></div>
+        </div>
+
+        <!-- Q17 -->
+        <div class="question-card" data-q="17" data-ans="74.9%">
+            <div class="question-title">17. 2012 සංගණන වාර්තා අනුව ශ්‍රී ලංකාවේ සිංහල ජන වර්ගයේ ප්‍රතිශතය වන්නේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q17" value="11.2%"> (1) 11.2%</label>
+                <label><input type="radio" name="q17" value="74.9%"> (2) 74.9%</label>
+                <label><input type="radio" name="q17" value="9.2%"> (3) 9.2%</label>
+                <label><input type="radio" name="q17" value="70.2%"> (4) 70.2%</label>
+            </div>
+            <div class="feedback" id="fb17"></div>
+        </div>
+
+        <!-- Q18 -->
+        <div class="question-card" data-q="18" data-ans="බෞද්ධ">
+            <div class="question-title">18. 2012 ජන සංගණනයට අනුව ශ්‍රී ලංකාවේ වැඩිම ප්‍රතිශතයක් අදහන ආගම වන්නේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q18" value="හින්දු"> (1) හින්දු</label>
+                <label><input type="radio" name="q18" value="ඉස්ලාම්"> (2) ඉස්ලාම්</label>
+                <label><input type="radio" name="q18" value="බෞද්ධ"> (3) බෞද්ධ</label>
+                <label><input type="radio" name="q18" value="කතෝලික"> (4) කතෝලික</label>
+            </div>
+            <div class="feedback" id="fb18"></div>
+        </div>
+
+        <!-- Q19 -->
+        <div class="question-card" data-q="19" data-ans="323 දෙනෙකි">
+            <div class="question-title">19. 2012 ජන සංගණනයට අනුව ශ්‍රී ලංකාවේ වර්ග කිලෝමීටරයකට සිටින සාමාන්‍ය පුද්ගලයන් සංඛ්‍යාව වන්නේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q19" value="250 දෙනෙකි"> (1) 250 දෙනෙකි</label>
+                <label><input type="radio" name="q19" value="323 දෙනෙකි"> (2) 323 දෙනෙකි</label>
+                <label><input type="radio" name="q19" value="400 දෙනෙකි"> (3) 400 දෙනෙකි</label>
+                <label><input type="radio" name="q19" value="150 දෙනෙකි"> (4) 150 දෙනෙකි</label>
+            </div>
+            <div class="feedback" id="fb19"></div>
+        </div>
+
+        <!-- Q20 -->
+        <div class="question-card" data-q="20" data-ans="වියළි කලාපයේය">
+            <div class="question-title">20. ශ්‍රී ලංකාවේ වැව් පද්ධතිය හා වාරි කර්මාන්තය මුල් කරගත් ඓතිහාසික සංස්කෘතියක් දැකිය හැක්කේ.</div>
+            <div class="options">
+                <label><input type="radio" name="q20" value="තෙත් කලාපයේය"> (1) තෙත් කලාපයේය</label>
+                <label><input type="radio" name="q20" value="වියළි කලාපයේය"> (2) වියළි කලාපයේය</label>
+                <label><input type="radio" name="q20" value="කඳුකර කලාපයේය"> (3) කඳුකර කලාපයේය</label>
+                <label><input type="radio" name="q20" value="අර්ධ ශුෂ්ක කලාපයේය"> (4) අර්ධ ශුෂ්ක කලාපයේය</label>
+            </div>
+            <div class="feedback" id="fb20"></div>
+        </div>
+
+        <div class="submit-section">
+            <button type="button" class="btn-submit" onclick="submitQuiz()">පිළිතුරු පෙන්වන්න / ලකුණු ලබා ගන්න</button>
+        </div>
+    </form>
+
+    <div id="result-section"></div>
+</div>
+
+<script>
+    let timeLeft = 30 * 60;
+    const timerElement = document.getElementById('timer');
+
+    const countdown = setInterval(() => {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        timerElement.innerHTML = `ඉතිරි කාලය: විනාඩි ${minutes} : තත්පර ${seconds < 10 ? '0' : ''}${seconds}`;
+        
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            alert("කාලය අවසන්! ඔබේ පිළිතුරු ස්වයංක්‍රීයව පරීක්ෂා කෙරේ.");
+            submitQuiz();
+        }
+        timeLeft--;
+    }, 1000);
+
+    function submitQuiz() {
+        clearInterval(countdown);
+        let score = 0;
+        const totalQuestions = 20;
+
+        for (let i = 1; i <= totalQuestions; i++) {
+            const card = document.querySelector(`[data-q="${i}"]`);
+            const correctAns = card.getAttribute('data-ans').trim();
+            const feedback = document.getElementById(`fb${i}`);
+            let userAns = "";
+
+            const radio = card.querySelector('input[type="radio"]:checked');
+            const textInput = card.querySelector('input[type="text"]');
+
+            if (radio) {
+                userAns = radio.value.trim();
+            } else if (textInput) {
+                userAns = textInput.value.trim();
+            }
+
+            if (userAns.toLowerCase() === correctAns.toLowerCase()) {
+                score++;
+                feedback.style.color = "green";
+                feedback.innerHTML = "✔ නිවැරදියි!";
+            } else {
+                feedback.style.color = "red";
+                feedback.innerHTML = `✘ වැරදියි. නිවැරදි පිළිතුර: <strong>${correctAns}</strong>`;
+            }
+        }
+
+        const studentName = document.getElementById('studentName').value || "සිසුවා";
+        const resultDiv = document.getElementById('result-section');
+        resultDiv.style.display = "block";
+        resultDiv.innerHTML = `ප්‍රතිඵලය: ${studentName}, ඔබ ලබාගත් ලකුණු ප්‍රමාණය ${score} / ${totalQuestions} කි! (${(score/totalQuestions)*100}%)`;
+        
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
